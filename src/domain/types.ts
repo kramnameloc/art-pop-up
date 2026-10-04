@@ -28,6 +28,9 @@ export interface FoldTemplate {
   aspectRatio: number
   closedHeight: number
   creases: { at: number; direction: 'mountain' | 'valley' }[]
+  /** Indices into creases, in the order a person should fold the printed sheet. */
+  foldOrder: number[]
+  printCheck: string
   panels: FoldPanel[]
   closedVisible: VisibleRegion[]
   bands: { from: number; to: number; label: string; color: string }[]

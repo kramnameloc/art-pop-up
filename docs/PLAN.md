@@ -2,7 +2,7 @@
 
 Build a child-friendly folding surprise art app in four independently reviewable phases. The first useful release lets a child choose original black-and-white artwork and unfold it on screen. Printing follows; live AI generation is an optional addition after the paper mechanism works.
 
-Planning baseline: October 4, 2026. This repository initially contained only an untracked `.gitignore`. Phases 1 and 2 have software implementations in React, TypeScript, and Vite. Physical verification of the fold contract remains pending. See [Phase 1 evidence](PHASE_1_VERIFICATION.md) and [Phase 2 evidence](PHASE_2_VERIFICATION.md) for completed checks and limits.
+Planning baseline: October 4, 2026. This repository initially contained only an untracked `.gitignore`. Phases 1–3 have software implementations in React, TypeScript, and Vite. Physical verification of the fold contract remains pending. See [Phase 1 evidence](PHASE_1_VERIFICATION.md), [Phase 2 evidence](PHASE_2_VERIFICATION.md), and [Phase 3 evidence](PHASE_3_VERIFICATION.md) for completed checks and limits.
 
 ## Product experience
 
@@ -77,14 +77,16 @@ Exit condition: a child can choose and repeatedly unfold three demo pictures, wi
 
 ## Phase 3 — Print, color, and fold
 
+Implemented October 4, 2026 at the user’s request using provisional surprise v1 geometry. The print preview, browser Print / Save as PDF flow, and vector export checks are complete. Physical folding and family usability are still pending; the interface and instruction sheets identify these as trial prints. This does not close checkpoint 1A or claim a physically verified craft.
+
 Add an adult-friendly print preview with US Letter and A4 options. Print the fully expanded master, never a screenshot of transformed paper. Offer subtle fold guides, a clean-art option, and a separate optional instruction sheet. Use the tested template to generate numbered fold directions.
 
 Center and scale artwork uniformly inside conservative printer margins. Derive fold-guide positions after scaling and placement, using the same transform as the art. Changing paper size must preserve the seam relationships. Include a small optional calibration ruler and clear instructions for actual-size printing and browser headers/footers.
 
 Provide browser printing and Save as PDF first. Treat a dedicated one-click PDF download as a separate enhancement if browser output proves insufficient. Preserve vectors where possible; check effective resolution at final print size for raster assets rather than assuming a larger pixel count adds detail.
 
-- [ ] **3A — Print preview parity:** Preview, print layout, and digital reveal all use the same master and fold-template revision.
-- [ ] **3B — Export checks:** Inspect Letter and A4 PDFs at full size. Art is not clipped, lines stay crisp, controls and screen shadows disappear, and instruction pages are optional.
+- [x] **3A — Print preview parity:** Preview, print layout, and digital reveal use the same master and fold-template revision. Chromium and WebKit checks confirm shared markup, paper options, clean art, instructions, keyboard access, and print styles.
+- [x] **3B — Export checks:** All three demos were exported as Letter and A4 PDFs through Chromium and visually reviewed at full-page size. The eight PDF checks include clean art and direct browser printing: correct page counts, conservative margins, vector paths without raster images, an accurate 50 mm ruler, and no studio controls or shadows. Native print dialogs and other engines’ PDF exports remain unverified; see [evidence](PHASE_3_VERIFICATION.md).
 - [ ] **3C — Physical fold test:** Print and fold every demo at both supported sizes. The compact picture joins within a target 2 mm tolerance and opening reveals the intended scene. Adjust the template or instructions if needed.
 - [ ] **3D — Family usability:** An adult and child can follow the printed directions, color the picture, and repeat the surprise. Record feedback and correct confusing steps.
 
@@ -133,4 +135,4 @@ Use ImageGen when creating or editing bitmap drafts, the PDF skill when producin
 
 Keep checkpoint status and evidence in this plan as work proceeds: build/check output, screenshots of closed/intermediate/open states, exported PDFs, and a dated note or photo of physical fold results. Mark unavailable physical checks as pending. Do not treat a successful screenshot or generation request as completion of a whole phase.
 
-Phase 2’s software and three static demos are implemented with [review evidence](PHASE_2_VERIFICATION.md). Next, physically verify the provisional fold contract and obtain human artwork review; correct the template and assets if needed. Close the Firefox, installed Safari, and real touch-device verification gaps. Phase 3 adds print previews and actual paper validation. Complete print validation before enabling live generation.
+Phase 3’s print preview and browser exports are implemented with [review evidence](PHASE_3_VERIFICATION.md). Next, print and fold all three demos on Letter and A4, record the seam errors, and run the adult/child usability check using the evidence document’s worksheet. Obtain human artwork review and correct the template or instructions if needed. Close the Firefox, installed Safari, native print-dialog, and real touch-device verification gaps. Complete physical print validation before enabling Phase 4 live generation.

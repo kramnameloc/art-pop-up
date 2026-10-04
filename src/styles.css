@@ -941,6 +941,144 @@ h1 em {
   line-height: 1.6;
 }
 
+.print-invitation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 16px 0 0;
+  border-top: 1px dashed var(--border);
+  font-size: 11px;
+  color: var(--muted);
+}
+.print-invitation strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.print-invitation .secondary-button {
+  white-space: nowrap;
+}
+.print-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+  font-size: 12px;
+}
+.print-paper-choice {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.print-paper-choice legend {
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 10px;
+}
+.print-paper-choice label {
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  margin-bottom: 9px;
+  padding: 12px;
+}
+.print-paper-choice label:has(:checked) {
+  background: #e5edde;
+  border-color: #829978;
+}
+.print-settings label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.print-settings input {
+  accent-color: var(--green);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.print-settings small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.print-extras {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.print-summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  margin: 24px 0 12px;
+}
+.print-summary > span {
+  color: var(--muted);
+}
+.print-preview {
+  padding: 24px;
+  background: #e7eadd;
+  border: 1px solid #d7ddcc;
+  border-radius: 12px;
+}
+.print-preview .print-pages {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+.print-page {
+  display: block;
+  font-family: Arial, sans-serif;
+  background: white;
+}
+.print-preview .print-page {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 430px;
+  box-shadow: 0 3px 12px #293d3518;
+}
+.print-help {
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 24px;
+}
+.print-help h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.print-help summary {
+  cursor: pointer;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 12px 0;
+}
+.print-help summary:focus-visible {
+  outline: 3px solid #246e9e;
+  outline-offset: 2px;
+}
+.print-help li {
+  padding-left: 4px;
+  margin-bottom: 8px;
+}
+.print-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.print-output {
+  display: none;
+}
+
 @media (min-width: 1450px) {
   .app {
     padding: 0 60px;
@@ -1072,6 +1210,16 @@ h1 em {
   }
 }
 @media (max-width: 540px) {
+  .print-settings {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .print-preview {
+    padding: 12px;
+  }
+  .print-actions > button {
+    width: 100%;
+  }
   .app {
     padding: 0 20px;
   }
@@ -1291,5 +1439,36 @@ h1 em {
   .fold-lab > .primary-button {
     width: 100%;
     font-size: 11px;
+  }
+}
+
+@media print {
+  :root,
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 0;
+  }
+  body > :not(.print-output),
+  dialog,
+  dialog::backdrop {
+    display: none !important;
+  }
+  .print-output {
+    display: block;
+  }
+  .print-page {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    break-inside: avoid;
+    break-after: page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .print-page:last-child {
+    break-after: auto;
   }
 }

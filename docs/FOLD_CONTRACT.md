@@ -40,7 +40,22 @@ Only original band 1 is visible from the front. The closed sheet measures **8.5 
 4. Confirm that surprise bands 1 and 4 meet, whereas equal thirds shows only band 1. Record whether seam markers match, the printer settings, the sheet dimensions, and the date.
 5. Reopen each sheet and compare it with the lab's expanded view. Record which template reproduces the intended reference behavior.
 
-No physical test has been performed. Final artwork registration remains gated on that check. These SVGs are geometric prototypes; printer-margin handling and finished coloring-page export belong to phase 3.
+No physical test has been performed. Final artwork registration remains gated on that check. These SVGs are geometric prototypes. Phase 3 adds separate coloring-page exports with printer margins, described below.
+
+## Phase 3 print placement
+
+`src/domain/printLayout.ts` preserves the complete 612 × 792 master and scales both axes uniformly. The fitting rectangle leaves at least 36 points (12.7 mm) horizontally and 60 points vertically around the master; extra vertical space keeps the optional calibration ruler separate from the artwork. The master is centered on the physical page. Options never change its scale or position.
+
+For page width `W` and height `H`, use `s = min((W - 72) / 612, (H - 120) / 792)`, `x = (W - 612s) / 2`, and `y = (H - 792s) / 2`. A normalized crease `c` prints at `y + c × 792s`. The same transform places the art and guides. `foldOrder` in the existing template numbers the lower mountain crease first and upper valley crease second; no geometry revision was made.
+
+| Paper | Fold 1: back, from flat page top | Fold 2: forward, from flat page top |
+| --- | --- | --- |
+| US Letter | 139.7 mm / 5.50 in | 80.4 mm / 3.17 in |
+| A4 | 148.5 mm / 5.85 in | 88.8 mm / 3.50 in |
+
+These are the coloring-page positions, not the full-bleed fold-lab prototype positions above. Keep the entire physical sheet; do not trim the margins. The fold at the centered midpoint maps the upper artwork seam onto the lower seam after the second fold. Unit tests independently check this reflection in page coordinates. White paper extending past the master changes the outside blank margins of the closed craft but not the artwork registration.
+
+Print at actual size with matching paper, no additional browser margins, and headers/footers off. Measure the optional 50 mm ruler and record any driver scaling. The [Phase 3 worksheet](PHASE_3_VERIFICATION.md#physical-fold-and-family-review-worksheet) requires physical testing for all six artwork/paper combinations; mathematical registration is not physical evidence.
 
 ## Implementation boundaries
 

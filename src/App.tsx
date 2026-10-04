@@ -6,10 +6,11 @@ import { PaperStage } from './components/PaperStage'
 import { Modal } from './components/Modal'
 import { FoldLab } from './components/FoldLab'
 import { Icon } from './components/Icon'
+import { PrintPreview } from './components/PrintPreview'
 
 type Collection =
   { status: 'loading' } | { status: 'error' } | { status: 'ready'; artworks: Artwork[] }
-type Dialog = 'help' | 'grownups' | 'folds' | null
+type Dialog = 'help' | 'grownups' | 'folds' | 'print' | null
 
 export default function App() {
   const [collection, setCollection] = useState<Collection>({ status: 'loading' })
@@ -120,7 +121,12 @@ export default function App() {
                 setSelectedId(id)
               }}
             />
-            <PaperStage artwork={selected} key={selected.id} quietMotion={quietMotion} />
+            <PaperStage
+              artwork={selected}
+              key={selected.id}
+              quietMotion={quietMotion}
+              onPrint={() => setDialog('print')}
+            />
           </div>
         )}
         <section className="studio-bottom" aria-label="About this studio">
@@ -171,17 +177,17 @@ export default function App() {
             <li>
               <span>3</span>
               <div>
-                <h3>Meet the surprise</h3>
+                <h3>Print, color, and fold</h3>
                 <p>
-                  Look for the little characters tucked inside each picture. Pick another picture
-                  and discover a whole new surprise.
+                  Ask a grown-up to open “Print & color”. Pick your paper size, print the picture,
+                  and follow the folding directions to make a surprise of your own.
                 </p>
               </div>
             </li>
           </ol>
           <p className="fine-print">
             Use the button with a mouse, touch, or Tab and Enter. Drag the pull tab up to open and
-            down to fold, or focus it and use the arrow keys. Coloring printouts are coming later.
+            down to fold, or focus it and use the arrow keys.
           </p>
         </Modal>
       )}
@@ -207,7 +213,8 @@ export default function App() {
             <h3>About this early studio</h3>
             <p>
               These original pictures live right here in the studio. No account, personal details,
-              or API key is needed. Coloring printouts are planned next.
+              or API key is needed. Print coloring sheets on US Letter or A4 paper, with optional
+              guides and a separate instruction sheet.
             </p>
             <p>
               The paper geometry still needs a real-world fold check. The fold lab includes numbered
@@ -218,6 +225,12 @@ export default function App() {
               Visit the fold lab
               <Icon name="arrow" size={17} />
             </button>
+            {selected && (
+              <button className="secondary-button" onClick={() => setDialog('print')}>
+                <Icon name="print" />
+                Print &amp; color
+              </button>
+            )}
           </div>
         </Modal>
       )}
@@ -225,6 +238,13 @@ export default function App() {
         <Modal title="The little fold lab" onClose={() => setDialog(null)} wide>
           <FoldLab />
         </Modal>
+      )}
+      {selected && (
+        <PrintPreview
+          artwork={selected}
+          open={dialog === 'print'}
+          onClose={() => setDialog(null)}
+        />
       )}
     </div>
   )

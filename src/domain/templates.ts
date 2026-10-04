@@ -14,6 +14,8 @@ export const templates: Record<TemplateId, FoldTemplate> = {
       { at: 0.25, direction: 'valley' },
       { at: 0.5, direction: 'mountain' },
     ],
+    foldOrder: [1, 0],
+    printCheck: 'The top and bottom of the picture should meet, hiding the surprise in the middle.',
     panels: [
       {
         id: 'top',
@@ -73,6 +75,8 @@ export const templates: Record<TemplateId, FoldTemplate> = {
       { at: 1 / 3, direction: 'valley' },
       { at: 2 / 3, direction: 'mountain' },
     ],
+    foldOrder: [1, 0],
+    printCheck: 'The three panels should stack, with only the top part of the picture showing.',
     panels: [
       {
         id: 'top',

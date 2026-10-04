@@ -12,7 +12,15 @@ const stateLabels = {
   closing: 'Folding…',
 }
 
-export function PaperStage({ artwork, quietMotion }: { artwork: Artwork; quietMotion: boolean }) {
+export function PaperStage({
+  artwork,
+  quietMotion,
+  onPrint,
+}: {
+  artwork: Artwork
+  quietMotion: boolean
+  onPrint: () => void
+}) {
   const reduced = useReducedMotion(quietMotion)
   const fold = useFold(reduced)
   const holder = useRef<HTMLDivElement>(null)
@@ -213,6 +221,22 @@ export function PaperStage({ artwork, quietMotion }: { artwork: Artwork; quietMo
             {fold.target ? 'Fold it back' : 'Open the surprise'}
           </button>
         </div>
+      </div>
+      <div className="print-invitation">
+        <span>
+          <strong>Make it with real paper.</strong> Add your own colors.
+        </span>
+        <button
+          className="secondary-button"
+          onClick={(event) => {
+            // Safari does not focus buttons on pointer click; preserve a useful dialog return target.
+            event.currentTarget.focus()
+            onPrint()
+          }}
+        >
+          <Icon name="print" size={18} />
+          Print &amp; color
+        </button>
       </div>
     </section>
   )

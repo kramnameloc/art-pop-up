@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 
 const paths = {
+  print: 'M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7v-7Zm10-3h.01',
   fold: 'M4 4h11l5 7-5 9H4l5-9-5-7Zm5 7h11M4 4l5 7-5 9',
   arrow: 'M5 12h14m-6-6 6 6-6 6',
   open: 'm8 8 4-4 4 4m-4-4v16m-4-4 4 4 4-4M4 12h2m12 0h2',

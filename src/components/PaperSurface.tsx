@@ -1,77 +1,9 @@
 import type { Artwork, FoldTemplate } from '../domain/types'
 import { LETTER_PAPER } from '../domain/paper'
 import { visibleRegions } from '../domain/templates'
-import { ConceptSketch } from './ConceptSketch'
+import { assetUrl } from '../domain/artworkRepository'
 
 const { width, height } = LETTER_PAPER
-
-function ConceptMaster({ artwork }: { artwork: Artwork }) {
-  const iconSize = height * 0.42
-  const drawing = (
-    <svg
-      x={(width - iconSize) / 2}
-      y={(height / 2 - iconSize) / 2}
-      width={iconSize}
-      height={iconSize}
-    >
-      <ConceptSketch concept={artwork.concept} />
-    </svg>
-  )
-  return (
-    <>
-      <rect width={width} height={height} fill="#fffefa" />
-      <svg
-        y="0"
-        width={width}
-        height={height / 4}
-        viewBox={`0 0 ${width} ${height / 4}`}
-        overflow="hidden"
-      >
-        {drawing}
-      </svg>
-      <svg
-        y={height * 0.75}
-        width={width}
-        height={height / 4}
-        viewBox={`0 ${height / 4} ${width} ${height / 4}`}
-        overflow="hidden"
-      >
-        {drawing}
-      </svg>
-      <rect
-        x="36"
-        y={height / 4 + 20}
-        width={width - 72}
-        height={height / 2 - 40}
-        rx="16"
-        fill="#faf7ef"
-      />
-      <g transform={`translate(${width / 2} ${height / 2})`}>
-        <text y="-100" textAnchor="middle" className="paper-number">
-          02 + 03
-        </text>
-        <path
-          d="m0-62 10 22 24 3-18 17 4 25L0-8l-20 13 4-25-18-17 24-3Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <text y="65" textAnchor="middle" className="paper-note">
-          Room for a little surprise.
-        </text>
-        <text y="102" textAnchor="middle" className="paper-small">
-          Your artwork will grow here.
-        </text>
-      </g>
-      <path
-        d={`M0 ${height / 4}H${width}M0 ${height / 2}H${width}`}
-        stroke="#ccc8bc"
-        strokeWidth="1"
-        strokeDasharray="5 6"
-      />
-    </>
-  )
-}
 
 function NumberedMaster({ template }: { template: FoldTemplate }) {
   return (
@@ -157,7 +89,7 @@ export function PaperSurface({
           {numbered ? (
             <NumberedMaster template={template} />
           ) : (
-            artwork && <ConceptMaster artwork={artwork} />
+            artwork && <image href={assetUrl(artwork.master.src)} width={width} height={height} />
           )}
         </svg>
       ))}

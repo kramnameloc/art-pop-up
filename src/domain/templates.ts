@@ -1,5 +1,5 @@
 import type { FoldTemplate, TemplateId } from './types'
-import { LETTER_PAPER } from './paper'
+import { LETTER_PAPER } from './paper.ts'
 
 export const templates: Record<TemplateId, FoldTemplate> = {
   surprise: {

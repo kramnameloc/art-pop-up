@@ -3,29 +3,29 @@ import AxeBuilder from '@axe-core/playwright'
 
 test('gallery selection, paper controls, and reset work without external services', async ({
   page,
+  baseURL,
 }) => {
   const errors: string[] = []
   const external: string[] = []
   page.on('pageerror', (error) => errors.push(error.message))
   page.on('request', (request) => {
-    if (!request.url().startsWith('http://127.0.0.1:5173')) external.push(request.url())
+    if (new URL(request.url()).origin !== new URL(baseURL!).origin) external.push(request.url())
   })
   await page.goto('/')
   await expect(page.getByRole('button', { name: /Picnic cooler/ })).toHaveAttribute(
     'aria-pressed',
     'true',
   )
-  await page.getByRole('button', { name: 'Open the paper', exact: true }).click()
-  await expect(page.getByRole('img', { name: /unfolded cooler/ })).toBeVisible()
+  await page.getByRole('button', { name: 'Open the surprise', exact: true }).click()
+  await expect(page.getByRole('img', { name: /open picnic cooler/ })).toBeVisible()
   await page.getByRole('button', { name: /Cozy gift box/ }).click()
-  await expect(page.getByRole('img', { name: /simple gift box/ })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Open the paper', exact: true })).toHaveAttribute(
-    'aria-expanded',
-    'false',
-  )
+  await expect(page.getByRole('img', { name: /little gift box/ })).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Open the surprise', exact: true }),
+  ).toHaveAttribute('aria-expanded', 'false')
   await page.getByRole('button', { name: /Tiny flower pot/ }).click()
-  await expect(page.getByRole('img', { name: /simple smiling flower pot/ })).toBeVisible()
-  await page.getByRole('button', { name: 'Open the paper', exact: true }).click()
+  await expect(page.getByRole('img', { name: /smiling flower pot/ })).toBeVisible()
+  await page.getByRole('button', { name: 'Open the surprise', exact: true }).click()
   await page.getByRole('button', { name: 'Reset paper' }).click()
   await expect(page.getByRole('button', { name: 'Reset paper' })).toBeDisabled()
   expect(errors).toEqual([])
@@ -33,7 +33,7 @@ test('gallery selection, paper controls, and reset work without external service
 })
 
 for (const width of [360, 768, 1280]) {
-  test(`layout and accessibility at ${width}px`, async ({ page }) => {
+  test(`layout and accessibility at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 })
     await page.goto('/')
     await expect(page.getByRole('button', { name: /Picnic cooler/ })).toBeVisible()
@@ -48,22 +48,22 @@ for (const width of [360, 768, 1280]) {
       expect(box!.width).toBeGreaterThanOrEqual(44)
     }
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([])
-    await page.screenshot({ path: `test-results/studio-${width}.png`, fullPage: true })
-    const closedPaper = page.getByRole('img', { name: /simple smiling picnic cooler/ })
-    await expect(closedPaper).toHaveAttribute('viewBox', '0 0 612 396')
+    await page.screenshot({ path: testInfo.outputPath(`studio-${width}.png`), fullPage: true })
+    const closedPaper = page.getByRole('img', { name: /smiling picnic cooler/ })
+    await expect(closedPaper).toHaveAttribute('data-progress', '0.0000')
     const closedWidth = await closedPaper.evaluate((element) =>
       parseFloat(getComputedStyle(element).width),
     )
-    await page.getByRole('button', { name: 'Open the paper', exact: true }).click()
+    await page.getByRole('button', { name: 'Open the surprise', exact: true }).click()
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBe(true)
-    const paper = page.getByRole('img', { name: /unfolded cooler/ })
-    await expect(paper).toHaveAttribute('viewBox', '0 0 612 792')
+    const paper = page.getByRole('img', { name: /open picnic cooler/ })
+    await expect(paper).toHaveAttribute('data-progress', '1.0000')
     const dimensions = await paper.boundingBox()
     expect(dimensions!.width / dimensions!.height).toBeCloseTo(8.5 / 11, 2)
     expect(dimensions!.width).toBeCloseTo(closedWidth, 1)
-    await page.screenshot({ path: `test-results/studio-open-${width}.png`, fullPage: true })
+    await page.screenshot({ path: testInfo.outputPath(`studio-open-${width}.png`), fullPage: true })
   })
 }
 
@@ -79,7 +79,7 @@ test('keyboard opens and closes a focus-contained dialog and paper', async ({ pa
   await page.keyboard.press('Escape')
   await expect(page.getByRole('dialog')).toHaveCount(0)
   await expect(help).toBeFocused()
-  const open = page.getByRole('button', { name: 'Open the paper', exact: true })
+  const open = page.getByRole('button', { name: 'Open the surprise', exact: true })
   await open.focus()
   await page.keyboard.press('Enter')
   await expect(page.getByRole('button', { name: 'Fold it back' })).toBeFocused()
@@ -129,7 +129,7 @@ test('loading indicator respects reduced motion and grown-up preference', async 
   await page.getByRole('checkbox', { name: /Less movement/ }).check()
   await page.getByRole('button', { name: 'Close dialog' }).click()
   await page.emulateMedia({ reducedMotion: 'no-preference' })
-  await expect(page.getByRole('button', { name: 'Open the paper', exact: true })).toHaveCSS(
+  await expect(page.getByRole('button', { name: 'Open the surprise', exact: true })).toHaveCSS(
     'transition-duration',
     '0s',
   )

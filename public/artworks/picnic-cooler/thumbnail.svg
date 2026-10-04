@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 396">
+<svg y="0" width="612" height="198" viewBox="0 0 612 198" overflow="hidden">
+
+  <rect width="612" height="792" fill="white"/>
+  <g fill="white" stroke="black" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top band: the lid ends at y=198, meeting the body at y=594 when folded. -->
+    <path d="M236 138v-26q0-17 17-17h106q17 0 17 17v26h-19v-23H255v23Z"/>
+    <path d="M126 146q0-14 14-14h332q14 0 14 14v38q0 14-14 14H140q-14 0-14-14Z"/>
+    <path d="M148 158h316"/>
+    <path d="M92 123v18m-9-9h18M505 91l6 12m-42-36 3 10" fill="none"/>
+    <!-- Hidden middle: generous coloring shapes with clear space at the seam. -->
+    <g transform="translate(172 327) rotate(-13)">
+      <path d="M-45-12q-2-43 45-43t45 43v62q0 12-12 12h-66q-12 0-12-12Z"/>
+      <path d="M-11 63v32q0 12 11 12t11-12V63"/>
+      <path d="M-24-26v24m48-24v24" fill="none"/>
+      <circle cx="-14" cy="23" r="4" fill="black" stroke="none"/>
+      <circle cx="14" cy="23" r="4" fill="black" stroke="none"/>
+      <path d="M-7 36q7 8 14 0" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(395 308) rotate(14)">
+      <path d="M-48 2C-65-41-15-50 0-31c15-19 65-10 48 33C33 45 12 61 0 62S-37 41-48 2Z"/>
+      <path d="m0-29-28-6 16-14 12 8 12-8 16 14Z"/>
+      <path d="M0-43q-7-12 3-24" fill="none"/>
+      <circle cx="-17" cy="6" r="4" fill="black" stroke="none"/>
+      <circle cx="17" cy="6" r="4" fill="black" stroke="none"/>
+      <path d="M-7 20q7 8 14 0m-25 12 2 5m37-5-2 5M0 43v5" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(304 469) rotate(-18)">
+      <path d="M-73-22h146a73 73 0 0 1-146 0Z"/>
+      <path d="M-53-8h106a55 55 0 0 1-106 0Zm53 0v51M-5-8l-33 35M5-8l33 35" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(452 502)">
+      <circle r="46"/>
+      <path d="M-44-12q41 0 59 55M-23-40q-6 43 59 69M-16 43q6-31 56-63" fill="none" stroke-width="4"/>
+    </g>
+    <path d="m283 258 8 17 18 3-13 13 3 19-16-9-16 9 3-19-13-13 18-3Z"/>
+    <path d="m139 470 7 14 16 3-12 11 3 16-14-8-14 8 3-16-12-11 16-3Z"/>
+    <path d="M220 232l-9 17m248 152 18-8M94 381l13 8m245 165 5 12M191 557l9-13M327 352v16m-8-8h16" fill="none" stroke-width="5"/>
+    <!-- Body starts at the lower visible band, on the same x=140 / 472 anchors. -->
+    <path d="M140 594h332l-12 112q-2 20-22 20H174q-20 0-22-20Z"/>
+    <path d="M138 612h-19q-9 0-9 9v27q0 9 9 9h26m329-45h19q9 0 9 9v27q0 9-9 9h-26"/>
+    <path d="M170 613h272M185 705h242" fill="none" stroke-width="4"/>
+    <circle cx="261" cy="654" r="8" fill="black" stroke="none"/>
+    <circle cx="351" cy="654" r="8" fill="black" stroke="none"/>
+    <path d="M288 669q18 22 36 0" fill="none"/>
+    <path d="M236 671h10m120 0h10" fill="none" stroke-width="4"/>
+  </g>
+</svg>
+<svg y="198" width="612" height="198" viewBox="0 594 612 198" overflow="hidden">
+
+  <rect width="612" height="792" fill="white"/>
+  <g fill="white" stroke="black" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top band: the lid ends at y=198, meeting the body at y=594 when folded. -->
+    <path d="M236 138v-26q0-17 17-17h106q17 0 17 17v26h-19v-23H255v23Z"/>
+    <path d="M126 146q0-14 14-14h332q14 0 14 14v38q0 14-14 14H140q-14 0-14-14Z"/>
+    <path d="M148 158h316"/>
+    <path d="M92 123v18m-9-9h18M505 91l6 12m-42-36 3 10" fill="none"/>
+    <!-- Hidden middle: generous coloring shapes with clear space at the seam. -->
+    <g transform="translate(172 327) rotate(-13)">
+      <path d="M-45-12q-2-43 45-43t45 43v62q0 12-12 12h-66q-12 0-12-12Z"/>
+      <path d="M-11 63v32q0 12 11 12t11-12V63"/>
+      <path d="M-24-26v24m48-24v24" fill="none"/>
+      <circle cx="-14" cy="23" r="4" fill="black" stroke="none"/>
+      <circle cx="14" cy="23" r="4" fill="black" stroke="none"/>
+      <path d="M-7 36q7 8 14 0" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(395 308) rotate(14)">
+      <path d="M-48 2C-65-41-15-50 0-31c15-19 65-10 48 33C33 45 12 61 0 62S-37 41-48 2Z"/>
+      <path d="m0-29-28-6 16-14 12 8 12-8 16 14Z"/>
+      <path d="M0-43q-7-12 3-24" fill="none"/>
+      <circle cx="-17" cy="6" r="4" fill="black" stroke="none"/>
+      <circle cx="17" cy="6" r="4" fill="black" stroke="none"/>
+      <path d="M-7 20q7 8 14 0m-25 12 2 5m37-5-2 5M0 43v5" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(304 469) rotate(-18)">
+      <path d="M-73-22h146a73 73 0 0 1-146 0Z"/>
+      <path d="M-53-8h106a55 55 0 0 1-106 0Zm53 0v51M-5-8l-33 35M5-8l33 35" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(452 502)">
+      <circle r="46"/>
+      <path d="M-44-12q41 0 59 55M-23-40q-6 43 59 69M-16 43q6-31 56-63" fill="none" stroke-width="4"/>
+    </g>
+    <path d="m283 258 8 17 18 3-13 13 3 19-16-9-16 9 3-19-13-13 18-3Z"/>
+    <path d="m139 470 7 14 16 3-12 11 3 16-14-8-14 8 3-16-12-11 16-3Z"/>
+    <path d="M220 232l-9 17m248 152 18-8M94 381l13 8m245 165 5 12M191 557l9-13M327 352v16m-8-8h16" fill="none" stroke-width="5"/>
+    <!-- Body starts at the lower visible band, on the same x=140 / 472 anchors. -->
+    <path d="M140 594h332l-12 112q-2 20-22 20H174q-20 0-22-20Z"/>
+    <path d="M138 612h-19q-9 0-9 9v27q0 9 9 9h26m329-45h19q9 0 9 9v27q0 9-9 9h-26"/>
+    <path d="M170 613h272M185 705h242" fill="none" stroke-width="4"/>
+    <circle cx="261" cy="654" r="8" fill="black" stroke="none"/>
+    <circle cx="351" cy="654" r="8" fill="black" stroke="none"/>
+    <path d="M288 669q18 22 36 0" fill="none"/>
+    <path d="M236 671h10m120 0h10" fill="none" stroke-width="4"/>
+  </g>
+</svg>
+</svg>

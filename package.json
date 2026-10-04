@@ -11,11 +11,13 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc -b",
-    "format": "prettier --write src tests vite.config.ts playwright.config.ts eslint.config.js index.html",
+    "format": "prettier --write src tests scripts vite.config.ts playwright.config.ts eslint.config.js index.html",
     "lint": "eslint .",
     "test": "vitest run src",
     "test:e2e": "playwright test",
-    "check": "npm run lint && npm run test && npm run build"
+    "check": "npm run lint && npm run test && npm run artwork:check && npm run build",
+    "artwork:thumbnails": "node --experimental-strip-types scripts/derive-thumbnails.ts",
+    "artwork:check": "npm run artwork:thumbnails -- --check"
   },
   "dependencies": {
     "@fontsource/dm-sans": "^5.3.0",

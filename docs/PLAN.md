@@ -2,7 +2,7 @@
 
 Build a child-friendly folding surprise art app in four independently reviewable phases. The first useful release lets a child choose original black-and-white artwork and unfold it on screen. Printing follows; live AI generation is an optional addition after the paper mechanism works.
 
-Planning baseline: October 4, 2026. This repository initially contained only an untracked `.gitignore`. Phase 1's software is now implemented in React, TypeScript, and Vite. The remaining phase 1 checkpoint is physical verification of the fold contract; [verification evidence](PHASE_1_VERIFICATION.md) records completed checks and limits.
+Planning baseline: October 4, 2026. This repository initially contained only an untracked `.gitignore`. Phases 1 and 2 have software implementations in React, TypeScript, and Vite. Physical verification of the fold contract remains pending. See [Phase 1 evidence](PHASE_1_VERIFICATION.md) and [Phase 2 evidence](PHASE_2_VERIFICATION.md) for completed checks and limits.
 
 ## Product experience
 
@@ -52,6 +52,8 @@ Exit condition: the application runs without an API key, the shell is usable, an
 
 ## Phase 2 — Virtual paper and static demo artwork
 
+Implemented October 4, 2026 at the user’s request using the provisional surprise v1 geometry. The three assets are approved for the software demo after agent visual review; human sign-off and physical registration remain pending. This advances the screen experience without closing checkpoint 1A or claiming print readiness.
+
 Implement closed, opening, open, and closing states. Start with an explicit **Open the surprise** / **Fold it back** button. Add a drag handle after button interaction works, with clamped progress, snap-to-end behavior, and pointer cancellation. Keyboard and reduced-motion users must be able to reach the same states without dragging.
 
 The paper should change shape as it unfolds. Keep illustrations attached to their paper surfaces, hide back-facing artwork, and add subtle creases and shadows outside the printable master. The surprise remains concealed until the fold opens. Selecting another picture resets to closed. Repeated input must not corrupt state.
@@ -66,10 +68,10 @@ Manually author three original demo compositions using [the artwork guide](ARTWO
 
 Create and validate the cooler first, then reuse the template for the other two. Prefer manually constructed SVG masters for precise seams and crisp printing. Optional creator-side ImageGen drafts may help develop motifs, but the demo ships as reviewed static files and never calls an image API at runtime.
 
-- [ ] **2A — One complete reveal:** The cooler stays coherent when closed, half-open, and fully open. Alignment markers agree with the physical prototype.
-- [ ] **2B — Repeatable asset workflow:** All three artworks have a master, derived thumbnail, metadata, accessible descriptions, and recorded visual review. A new asset can be added through the manifest without changing the renderer.
-- [ ] **2C — Interaction verification:** Exercise mouse, touch, keyboard, interrupted dragging, rapid repeated taps, resize, and reduced motion. Check current Safari, Chromium, and Firefox, plus a real touch device when available.
-- [ ] **2D — Demo release:** The gallery and complete fold experience run without credentials or generation services. Check loading failures and confirm no unexpected network requests for AI.
+- [ ] **2A — One complete reveal:** The cooler works in closed, intermediate, and open screen views, with rigid paper surfaces and aligned digital seams. Comparison with a physically folded prototype remains pending.
+- [x] **2B — Repeatable asset workflow:** All three artworks have an editable SVG master, generated closed thumbnail, manifest metadata, state-specific descriptions, and recorded agent visual review. A browser test adds another manifest entry without renderer changes. Human review is explicitly pending in each record.
+- [ ] **2C — Interaction verification:** Chromium and WebKit checks cover mouse, simulated touch (Chromium), keyboard, pointer cancellation/lost capture, Escape, blur, resize, rapid reversals, and reduced motion. Firefox fails before page load with a profile-folder launch error. Installed Safari and real touch-device checks remain pending.
+- [x] **2D — Demo release:** All three demos run locally without credentials or generation services. Browser tests confirm manifest, master, and thumbnail error recovery and no third-party requests in the core journey. No deployment was requested.
 
 Exit condition: a child can choose and repeatedly unfold three demo pictures, with a convincing paper reveal and an accessible button alternative. Screen-reader descriptions reflect the current state without unnecessarily revealing the surprise while closed.
 
@@ -131,4 +133,4 @@ Use ImageGen when creating or editing bitmap drafts, the PDF skill when producin
 
 Keep checkpoint status and evidence in this plan as work proceeds: build/check output, screenshots of closed/intermediate/open states, exported PDFs, and a dated note or photo of physical fold results. Mark unavailable physical checks as pending. Do not treat a successful screenshot or generation request as completion of a whole phase.
 
-Phase 1's software and numbered-band prototype are implemented. Physically verify the provisional fold contract next. The next implementation slice is **one original cooler composition working end to end**. Expand to three demo assets only after that geometry is proven. Complete print validation before enabling live generation.
+Phase 2’s software and three static demos are implemented with [review evidence](PHASE_2_VERIFICATION.md). Next, physically verify the provisional fold contract and obtain human artwork review; correct the template and assets if needed. Close the Firefox, installed Safari, and real touch-device verification gaps. Phase 3 adds print previews and actual paper validation. Complete print validation before enabling live generation.

@@ -46,4 +46,6 @@ No physical test has been performed. Final artwork registration remains gated on
 
 `src/domain/paper.ts` owns the page dimensions. `src/domain/templates.ts` owns creases, panel orientation, stacking, and visible source regions. `PaperSurface` crops the same master according to those regions; it does not swap between separately authored closed and open images.
 
-Phase 1 renders endpoint projections. Continuous hinge animation and dragging belong to phase 2. Automated tests independently project the stacked panels to verify the visible-region mappings, but cannot substitute for a real sheet.
+Phase 2 adds continuous folding in `src/domain/foldGeometry.ts` and `FoldingPaper`. The hinge rotates from 180° to 0° about the base; the top translates with its connected edge while staying front-facing. Panel lengths stay fixed, the paper width stays fixed, and its projected height changes from half a sheet to a full sheet. Back faces are plain paper. Explicit face culling, back-to-front painting, layer indices, and tiny depth offsets preserve the template’s occlusion at the coplanar endpoints across browser engines.
+
+The gallery thumbnail generator uses the same template’s closed-visible mapping. Neither closed views nor thumbnails use independently drawn artwork. Automated tests check connected edges throughout the motion and independently project closed stacked panels, but cannot substitute for a real sheet.

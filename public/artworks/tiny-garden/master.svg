@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.5in" height="11in" viewBox="0 0 612 792">
+  <title>Tiny flower pot — a garden growing tall</title>
+  <rect width="612" height="792" fill="white"/>
+  <g fill="white" stroke="black" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- The sprout stem crosses both seam anchors at x=306. -->
+    <path d="M306 201V121" fill="none"/>
+    <path d="M306 148q-66 3-70-48 57-7 70 48Zm0-19q-1-57 64-54-3 50-64 54Z"/>
+    <path d="m252 112 35 24m63-47-29 27" fill="none" stroke-width="4"/>
+    <path d="M177 113v18m-9-9h18m255-10 12 9m-36 30 10-3" fill="none" stroke-width="5"/>
+    <!-- A continuous stem links the sprout and pot through the hidden garden. -->
+    <path d="M306 198v396M306 477q-52-63-122-119M306 388q39-76 97-99M306 553q58-43 94-82" fill="none"/>
+    <path d="M306 307q-75 0-70-56 61 3 70 56Zm0 185q73 0 67-53-62 0-67 53Zm-59-93q-60 19-68-30 49-24 68 30Z"/>
+    <g transform="translate(180 315)">
+      <path d="M-19-27c-36-39-59 6-34 26-47 20-14 59 15 43-1 48 48 46 49 8 37 25 60-15 27-40 37-25 6-60-23-32C22-68-26-65-19-27Z"/>
+      <circle r="30"/>
+      <circle cx="-10" cy="-3" r="4" fill="black" stroke="none"/>
+      <circle cx="10" cy="-3" r="4" fill="black" stroke="none"/>
+      <path d="M-7 10q7 8 14 0" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(418 270)">
+      <path d="M-19-26c-33-36-55 6-31 24-44 19-13 55 14 40-1 44 44 42 45 7 34 23 56-14 25-37 35-23 6-56-21-30C19-64-25-61-19-26Z"/>
+      <circle r="27"/>
+      <circle cx="-9" cy="-3" r="4" fill="black" stroke="none"/>
+      <circle cx="9" cy="-3" r="4" fill="black" stroke="none"/>
+      <path d="M-6 9q6 8 12 0" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(419 425) rotate(-15)">
+      <path d="M-9-14q-45-54-54-13-4 27 43 24M7-16q28-61 49-26 14 24-30 39"/>
+      <ellipse rx="43" ry="28"/>
+      <path d="M-9-25v50m21-49v46" fill="none"/>
+      <circle cx="33" cy="-7" r="4" fill="black" stroke="none"/>
+      <path d="M33 6q5 5 9-1m-73-19-17-10" fill="none" stroke-width="4"/>
+    </g>
+    <g transform="translate(187 535) rotate(12)">
+      <path d="M-14-24q-11-20-22-12m50 12q11-20 22-12" fill="none" stroke-width="4"/>
+      <circle cy="-18" r="21"/>
+      <ellipse cy="13" rx="38" ry="33"/>
+      <path d="M0-19v64" fill="none" stroke-width="4"/>
+      <circle cx="-18" cy="6" r="7"/><circle cx="18" cy="6" r="7"/>
+      <circle cx="-18" cy="27" r="6"/><circle cx="18" cy="27" r="6"/>
+      <circle cx="-7" cy="-23" r="3" fill="black" stroke="none"/>
+      <circle cx="7" cy="-23" r="3" fill="black" stroke="none"/>
+    </g>
+    <path d="M100 429v17m-8-8h16m408 51-12 7M344 220l7 12m22 335 11-8" fill="none" stroke-width="5"/>
+    <!-- Lower band: the same stem enters the little pot just below the join. -->
+    <path d="M306 594v24" fill="none"/>
+    <path d="m164 635 24 82q3 12 15 12h206q12 0 15-12l24-82"/>
+    <rect x="151" y="613" width="310" height="29" rx="9"/>
+    <circle cx="265" cy="675" r="7" fill="black" stroke="none"/>
+    <circle cx="347" cy="675" r="7" fill="black" stroke="none"/>
+    <path d="M292 690q14 17 28 0m-80-1h8m116 0h8" fill="none" stroke-width="5"/>
+  </g>
+</svg>

@@ -1,6 +1,5 @@
-export type Concept = 'cooler' | 'gift' | 'garden'
 export type TemplateId = 'surprise' | 'thirds'
-export type PaperState = 'closed' | 'open'
+export type PaperState = 'closed' | 'opening' | 'open' | 'closing'
 
 /** All geometry is normalized to the unfolded sheet, with y increasing downward. */
 export interface FoldPanel {
@@ -39,13 +38,14 @@ export interface Artwork {
   id: string
   title: string
   subtitle: string
-  concept: Concept
   palette: 'peach' | 'lavender' | 'sage'
   templateId: TemplateId
   templateVersion: 1
-  reviewStatus: 'approved-placeholder'
-  master: { kind: 'concept-placeholder' } & Pick<typeof LETTER_PAPER, 'width' | 'height'>
-  descriptions: Record<PaperState, string>
+  reviewStatus: 'approved-demo'
+  master: { kind: 'svg'; src: string } & Pick<typeof LETTER_PAPER, 'width' | 'height'>
+  thumbnail: string
+  descriptions: Record<'closed' | 'open', string>
+  review: { visual: 'agent-reviewed'; human: 'pending'; physical: 'pending'; notes: string }
   printBounds: { x: number; y: number; width: number; height: number }
 }
 import type { LETTER_PAPER } from './paper'

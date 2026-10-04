@@ -15,7 +15,6 @@ export default function App() {
   const [collection, setCollection] = useState<Collection>({ status: 'loading' })
   const [attempt, setAttempt] = useState(0)
   const [selectedId, setSelectedId] = useState('picnic-cooler')
-  const [open, setOpen] = useState(false)
   const [dialog, setDialog] = useState<Dialog>(null)
   const [quietMotion, setQuietMotion] = useState(false)
 
@@ -80,7 +79,7 @@ export default function App() {
           </h1>
           <p>
             A happy place for curious hands and colorful imaginations.
-            <br className="desktop-break" /> Pick an idea, unfold your paper, and see what could be
+            <br className="desktop-break" /> Pick a picture, unfold your paper, and discover what’s
             inside.
           </p>
           <span className="intro-doodle" aria-hidden="true">
@@ -119,15 +118,9 @@ export default function App() {
               selectedId={selected.id}
               onSelect={(id) => {
                 setSelectedId(id)
-                setOpen(false)
               }}
             />
-            <PaperStage
-              artwork={selected}
-              open={open}
-              onToggle={() => setOpen((value) => !value)}
-              onReset={() => setOpen(false)}
-            />
+            <PaperStage artwork={selected} key={selected.id} quietMotion={quietMotion} />
           </div>
         )}
         <section className="studio-bottom" aria-label="About this studio">
@@ -137,7 +130,7 @@ export default function App() {
             </span>
             <div>
               <strong>A little paper. A lot of possibility.</strong>
-              <p>We’re starting with simple shapes. Full surprise pictures are up next.</p>
+              <p>A picnic, a party, a tiny garden. Which surprise will you find?</p>
             </div>
           </div>
           <button className="text-button fold-lab-link" onClick={() => setDialog('folds')}>
@@ -170,25 +163,25 @@ export default function App() {
               <div>
                 <h3>Open your paper</h3>
                 <p>
-                  Press “Open the paper” to see the space hiding inside. Press “Fold it back” to
-                  start again.
+                  Press “Open the surprise” to discover what’s hiding inside. Press “Fold it back”
+                  to start again.
                 </p>
               </div>
             </li>
             <li>
               <span>3</span>
               <div>
-                <h3>Imagine the surprise</h3>
+                <h3>Meet the surprise</h3>
                 <p>
-                  What would you put inside? These are simple concept previews. Finished coloring
-                  pictures are coming in the next phase.
+                  Look for the little characters tucked inside each picture. Pick another picture
+                  and discover a whole new surprise.
                 </p>
               </div>
             </li>
           </ol>
           <p className="fine-print">
-            You can use a mouse, touch, or Tab and Enter. Paper dragging and printable coloring
-            pages will come later.
+            Use the button with a mouse, touch, or Tab and Enter. Drag the pull tab up to open and
+            down to fold, or focus it and use the arrow keys. Coloring printouts are coming later.
           </p>
         </Modal>
       )}
@@ -198,7 +191,7 @@ export default function App() {
           <label className="setting-row">
             <span>
               <strong>Less movement</strong>
-              <span>Keep hover effects and transitions still.</span>
+              <span>Open and fold instantly, with no animated movement.</span>
             </span>
             <input
               type="checkbox"
@@ -213,8 +206,8 @@ export default function App() {
           <div className="grownup-note">
             <h3>About this early studio</h3>
             <p>
-              Everything here is a local concept preview. No account, personal details, or API key
-              is needed. Full artwork and coloring printouts are planned next.
+              These original pictures live right here in the studio. No account, personal details,
+              or API key is needed. Coloring printouts are planned next.
             </p>
             <p>
               The paper geometry still needs a real-world fold check. The fold lab includes numbered

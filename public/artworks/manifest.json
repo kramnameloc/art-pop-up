@@ -1,23 +1,98 @@
 [
   {
-    "id": "picnic-cooler", "title": "Picnic cooler", "subtitle": "A little taste of summer", "concept": "cooler", "palette": "peach",
-    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
-    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
-    "descriptions": { "closed": "A simple smiling picnic cooler on folded paper.", "open": "An unfolded cooler concept sheet with a numbered space for future surprise artwork." },
-    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+    "id": "picnic-cooler",
+    "title": "Picnic cooler",
+    "subtitle": "A little taste of summer",
+    "palette": "peach",
+    "templateId": "surprise",
+    "templateVersion": 1,
+    "reviewStatus": "approved-demo",
+    "master": {
+      "kind": "svg",
+      "src": "artworks/picnic-cooler/master.svg",
+      "width": 612,
+      "height": 792
+    },
+    "descriptions": {
+      "closed": "A smiling picnic cooler with a handle and a closed lid. The surprise is tucked inside.",
+      "open": "An open picnic cooler bursting with a smiling strawberry, a popsicle, an orange slice, a beach ball, and stars."
+    },
+    "printBounds": {
+      "x": 0.08,
+      "y": 0.06,
+      "width": 0.84,
+      "height": 0.88
+    },
+    "thumbnail": "artworks/picnic-cooler/thumbnail.svg",
+    "review": {
+      "visual": "agent-reviewed",
+      "human": "pending",
+      "physical": "pending",
+      "notes": "artwork-sources/picnic-cooler/brief.md"
+    }
   },
   {
-    "id": "cozy-gift", "title": "Cozy gift box", "subtitle": "A bundle of happy things", "concept": "gift", "palette": "lavender",
-    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
-    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
-    "descriptions": { "closed": "A simple gift box with a bow on folded paper.", "open": "An unfolded gift box concept sheet with a numbered space for future surprise artwork." },
-    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+    "id": "cozy-gift",
+    "title": "Cozy gift box",
+    "subtitle": "A bundle of happy things",
+    "palette": "lavender",
+    "templateId": "surprise",
+    "templateVersion": 1,
+    "reviewStatus": "approved-demo",
+    "master": {
+      "kind": "svg",
+      "src": "artworks/cozy-gift/master.svg",
+      "width": 612,
+      "height": 792
+    },
+    "descriptions": {
+      "closed": "A little gift box with a big bow and a ribbon. The surprise is tucked inside.",
+      "open": "An open gift box with a waving rabbit, a friendly bear, big stars, and curly party streamers."
+    },
+    "printBounds": {
+      "x": 0.08,
+      "y": 0.06,
+      "width": 0.84,
+      "height": 0.88
+    },
+    "thumbnail": "artworks/cozy-gift/thumbnail.svg",
+    "review": {
+      "visual": "agent-reviewed",
+      "human": "pending",
+      "physical": "pending",
+      "notes": "artwork-sources/cozy-gift/brief.md"
+    }
   },
   {
-    "id": "tiny-garden", "title": "Tiny flower pot", "subtitle": "Something lovely is growing", "concept": "garden", "palette": "sage",
-    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
-    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
-    "descriptions": { "closed": "A simple smiling flower pot and a sprout on folded paper.", "open": "An unfolded flower pot concept sheet with a numbered space for future surprise artwork." },
-    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+    "id": "tiny-garden",
+    "title": "Tiny flower pot",
+    "subtitle": "Something lovely is growing",
+    "palette": "sage",
+    "templateId": "surprise",
+    "templateVersion": 1,
+    "reviewStatus": "approved-demo",
+    "master": {
+      "kind": "svg",
+      "src": "artworks/tiny-garden/master.svg",
+      "width": 612,
+      "height": 792
+    },
+    "descriptions": {
+      "closed": "A smiling flower pot with a small leafy sprout. The surprise is tucked inside.",
+      "open": "A tall garden grows from the flower pot, with two smiling flowers, a bumblebee, a ladybug, and big leaves."
+    },
+    "printBounds": {
+      "x": 0.08,
+      "y": 0.06,
+      "width": 0.84,
+      "height": 0.88
+    },
+    "thumbnail": "artworks/tiny-garden/thumbnail.svg",
+    "review": {
+      "visual": "agent-reviewed",
+      "human": "pending",
+      "physical": "pending",
+      "notes": "artwork-sources/tiny-garden/brief.md"
+    }
   }
 ]

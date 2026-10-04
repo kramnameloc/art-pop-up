@@ -4,7 +4,7 @@ Use this brief for manually authored demo artwork and, later, creator-assisted o
 
 ## Inputs
 
-Before creating artwork, read the approved fold template and record the subject, closed-picture concept, interior surprise, template version, master dimensions, visible regions, reserved seam areas, and print bounds. Until checkpoint 1A in [the implementation plan](PLAN.md) passes, use numbered bands and simple shapes rather than final illustrations.
+Before creating artwork, read the approved fold template and record the subject, closed-picture concept, interior surprise, template version, master dimensions, visible regions, reserved seam areas, and print bounds. Checkpoint 1A in [the implementation plan](PLAN.md) is still pending. Phase 2’s requested software demo uses provisional illustrated masters; do not finalize physical registration or claim print readiness until the real-paper check passes.
 
 ## Reusable creative instructions
 
@@ -29,19 +29,23 @@ For the kid-facing catalog, choose welcoming animals, plants, food, toys, and im
 7. Add metadata and review status to the artwork manifest. Serve only approved assets.
 8. During phase 3, print and physically fold the matching sheet before marking it print-verified.
 
-Suggested per-artwork package:
+Current per-artwork package:
 
 ```text
 public/artworks/<id>/
   master.svg          # Or a reviewed high-resolution PNG
-  thumbnail.webp      # Derived from the closed renderer
-  artwork.json        # Template reference, dimensions, descriptions, review status
+  thumbnail.svg       # Generated from the same master and closed-region mapping
 artwork-sources/<id>/
   brief.md            # Concept, provenance, and review notes
-  source.svg          # Editable source when different from the export
+
+public/artworks/manifest.json # Template, dimensions, descriptions, bounds, and review status
 ```
 
-These are proposed paths for implementation; no demo artwork has been created yet. Do not label a raster embedded inside an SVG as vector line art. Accept raster sources only when their final-size output is visually crisp.
+The exported master is also the editable vector source; there is no separate duplicate source file. The renderer crops this master onto three paper surfaces. `npm run artwork:thumbnails` derives the compact preview using `templates.surprise.closedVisible`; `npm run artwork:check` detects stale previews and runs in the standard check gate. Add a manifest record and assets to add another picture, with no concept branches in the renderer.
+
+`approved-demo` means accepted for the local screen demo. `review.visual`, `review.human`, and `review.physical` distinguish agent review from human sign-off and actual folding. The three current records have agent visual review, pending human review, and pending physical verification. Do not relabel those pending checks without evidence.
+
+Do not label a raster embedded inside an SVG as vector line art. Accept raster sources only when their final-size output is visually crisp.
 
 ## Example cooler brief
 

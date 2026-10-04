@@ -1,5 +1,5 @@
 import type { Artwork } from '../domain/types'
-import { ConceptSketch } from './ConceptSketch'
+import { assetUrl } from '../domain/artworkRepository'
 import { Icon } from './Icon'
 
 export function DemoGallery({
@@ -17,7 +17,7 @@ export function DemoGallery({
         <span className="step-number">1</span>
         <h2 id="gallery-title">Pick a little idea</h2>
       </div>
-      <p className="section-description">Every picture starts with a possibility.</p>
+      <p className="section-description">Every little picture holds a big surprise.</p>
       <div className="gallery-items">
         {artworks.map((artwork) => (
           <button
@@ -27,7 +27,7 @@ export function DemoGallery({
             onClick={() => onSelect(artwork.id)}
           >
             <span className="card-art">
-              <ConceptSketch concept={artwork.concept} />
+              <img src={assetUrl(artwork.thumbnail)} alt="" width="612" height="396" />
             </span>
             <span className="card-copy">
               <strong>{artwork.title}</strong>

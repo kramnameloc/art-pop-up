@@ -297,9 +297,11 @@ h1 em {
   background: #f5dfd3;
   color: #424a3e;
 }
-.card-art > svg {
-  width: 72px;
-  height: 72px;
+.card-art > img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
 }
 .lavender .card-art {
   background: #e9e3f1;
@@ -434,35 +436,13 @@ h1 em {
   width: 320px;
   margin: 39px 0 34px;
   color: #344136;
-  transform: rotate(-3deg);
-  filter: drop-shadow(1px 9px 7px #374e3720);
+  container-type: inline-size;
+  aspect-ratio: 612 / 792;
 }
 .paper-surface {
   width: 100%;
   display: block;
   overflow: visible;
-}
-.paper-holder::after {
-  content: '';
-  position: absolute;
-  left: 1px;
-  right: 1px;
-  bottom: -3px;
-  height: 3px;
-  border: 1px solid #d8d7cf;
-  border-top: 0;
-  background: #f4f2e9;
-}
-.paper-tape {
-  position: absolute;
-  z-index: 2;
-  left: calc(50% - 37px);
-  top: -12px;
-  width: 74px;
-  height: 26px;
-  background: #efcf829c;
-  transform: rotate(7deg);
-  clip-path: polygon(2% 0, 98% 3%, 100% 90%, 97% 100%, 0 96%, 3% 10%);
 }
 .table-star {
   position: absolute;
@@ -482,54 +462,12 @@ h1 em {
   font-size: 50px;
   color: #b49d69;
 }
-.handwritten {
-  position: absolute;
-  right: 22px;
-  top: 110px;
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 13px;
-  color: #697f60;
-  transform: rotate(8deg);
-  max-width: 86px;
-  text-align: center;
-}
-.handwritten > span {
-  display: block;
-  font-size: 37px;
-  margin-right: 35px;
-  transform: rotate(33deg);
-}
 .stage-caption {
   color: #586b51;
   font-size: 11px;
   text-align: center;
   margin-top: auto;
   z-index: 1;
-}
-.is-open .paper-holder {
-  margin: 20px 0 14px;
-  transform: rotate(0);
-}
-.is-open .table-star {
-  opacity: 0.65;
-}
-.paper-number {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
-  fill: #62695b;
-  letter-spacing: 3px;
-}
-.paper-note {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 30px;
-  fill: #526343;
-}
-.paper-small {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 20px;
-  fill: #62695b;
 }
 .band-number {
   font-family: 'Fraunces', serif;
@@ -912,6 +850,97 @@ h1 em {
   }
 }
 
+/* Every face crops the same master. Shadows and creases stay outside that asset. */
+.paper-holder {
+  max-width: 100%;
+  margin: 20px 0;
+}
+.folding-paper {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.paper-panels {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+.paper-panel {
+  position: absolute;
+  width: 100%;
+  transform-origin: center top;
+  transform-style: preserve-3d;
+}
+.panel-front,
+.panel-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background: white;
+}
+.panel-front {
+  display: block;
+  overflow: hidden;
+  box-shadow: inset 0 -1px #24362615;
+}
+.panel-back {
+  transform: rotateX(180deg);
+  background: #f5f2eb;
+  border: 1px solid #dedbd2;
+}
+.panel-base {
+  box-shadow: 0 6px 10px #304e3520;
+}
+.panel-top {
+  box-shadow: 0 2px 3px #304e3525;
+}
+.paper-pull-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 18px;
+  min-height: 44px;
+  background: #faf6df;
+  color: #526043;
+  border: 1px solid #b3ba96;
+  border-radius: 7px;
+  box-shadow: 0 2px 0 #c7d0b5;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: ns-resize;
+  touch-action: none;
+  user-select: none;
+}
+.paper-pull-tab:focus-visible {
+  outline: 3px solid #246e9e;
+  outline-offset: 4px;
+}
+.paper-pull-tab > span:first-child {
+  font-size: 21px;
+  line-height: 1;
+}
+.grip-dots {
+  font-size: 20px;
+}
+.drag-hint {
+  font-size: 10px;
+  color: #586b51;
+  text-align: center;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+.stage-caption {
+  min-height: 34px;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
 @media (min-width: 1450px) {
   .app {
     padding: 0 60px;
@@ -933,10 +962,6 @@ h1 em {
     width: 66px;
     height: 76px;
   }
-  .card-art > svg {
-    width: 64px;
-    height: 64px;
-  }
   .art-card {
     gap: 10px;
     padding-right: 10px;
@@ -951,12 +976,6 @@ h1 em {
     right: 8px;
     top: 56px;
   }
-  .handwritten {
-    right: 11px;
-    top: 72px;
-    max-width: 67px;
-    font-size: 11px;
-  }
   .star-one {
     left: 20px;
   }
@@ -965,8 +984,6 @@ h1 em {
   }
   .paper-holder {
     width: 275px;
-    margin-top: 49px;
-    margin-bottom: 45px;
   }
   .stage-controls {
     flex-wrap: wrap;
@@ -1019,10 +1036,6 @@ h1 em {
     width: 100%;
     height: 85px;
   }
-  .card-art > svg {
-    width: 76px;
-    height: 76px;
-  }
   .card-copy {
     padding-right: 15px;
     gap: 3px;
@@ -1050,14 +1063,6 @@ h1 em {
   }
   .paper-holder {
     width: 320px;
-    margin-top: 35px;
-    margin-bottom: 32px;
-  }
-  .handwritten {
-    right: 35px;
-    top: 100px;
-    max-width: 90px;
-    font-size: 13px;
   }
   .stage-controls {
     flex-wrap: nowrap;
@@ -1152,10 +1157,6 @@ h1 em {
     height: 67px;
     border-radius: 5px;
   }
-  .card-art > svg {
-    width: 63px;
-    height: 63px;
-  }
   .card-copy {
     padding: 0;
     width: 100%;
@@ -1202,17 +1203,6 @@ h1 em {
   }
   .paper-holder {
     width: min(235px, 86%);
-    margin-top: 39px;
-    margin-bottom: 28px;
-  }
-  .paper-tape {
-    width: 58px;
-    height: 22px;
-    left: calc(50% - 29px);
-    top: -10px;
-  }
-  .handwritten {
-    display: none;
   }
   .star-one {
     left: 12px;
@@ -1226,10 +1216,6 @@ h1 em {
   }
   .stage-caption {
     font-size: 9px;
-  }
-  .is-open .paper-holder {
-    margin-top: 25px;
-    margin-bottom: 19px;
   }
   .stage-controls {
     flex-direction: column-reverse;

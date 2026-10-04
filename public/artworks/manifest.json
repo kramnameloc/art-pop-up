@@ -1,0 +1,23 @@
+[
+  {
+    "id": "picnic-cooler", "title": "Picnic cooler", "subtitle": "A little taste of summer", "concept": "cooler", "palette": "peach",
+    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
+    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
+    "descriptions": { "closed": "A simple smiling picnic cooler on folded paper.", "open": "An unfolded cooler concept sheet with a numbered space for future surprise artwork." },
+    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+  },
+  {
+    "id": "cozy-gift", "title": "Cozy gift box", "subtitle": "A bundle of happy things", "concept": "gift", "palette": "lavender",
+    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
+    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
+    "descriptions": { "closed": "A simple gift box with a bow on folded paper.", "open": "An unfolded gift box concept sheet with a numbered space for future surprise artwork." },
+    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+  },
+  {
+    "id": "tiny-garden", "title": "Tiny flower pot", "subtitle": "Something lovely is growing", "concept": "garden", "palette": "sage",
+    "templateId": "surprise", "templateVersion": 1, "reviewStatus": "approved-placeholder",
+    "master": { "kind": "concept-placeholder", "width": 612, "height": 792 },
+    "descriptions": { "closed": "A simple smiling flower pot and a sprout on folded paper.", "open": "An unfolded flower pot concept sheet with a numbered space for future surprise artwork." },
+    "printBounds": { "x": 0, "y": 0, "width": 1, "height": 1 }
+  }
+]

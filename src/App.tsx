@@ -7,10 +7,12 @@ import { Modal } from './components/Modal'
 import { FoldLab } from './components/FoldLab'
 import { Icon } from './components/Icon'
 import { PrintPreview } from './components/PrintPreview'
+import { AddImage } from './components/AddImage'
+import { useCustomArtworks } from './hooks/useCustomArtworks'
 
 type Collection =
   { status: 'loading' } | { status: 'error' } | { status: 'ready'; artworks: Artwork[] }
-type Dialog = 'help' | 'grownups' | 'folds' | 'print' | null
+type Dialog = 'help' | 'grownups' | 'folds' | 'print' | 'add-image' | null
 
 export default function App() {
   const [collection, setCollection] = useState<Collection>({ status: 'loading' })
@@ -18,6 +20,7 @@ export default function App() {
   const [selectedId, setSelectedId] = useState('picnic-cooler')
   const [dialog, setDialog] = useState<Dialog>(null)
   const [quietMotion, setQuietMotion] = useState(false)
+  const custom = useCustomArtworks()
 
   useEffect(() => {
     const controller = new AbortController()
@@ -35,10 +38,11 @@ export default function App() {
     setAttempt((value) => value + 1)
   }
 
-  const selected =
-    collection.status === 'ready'
-      ? (collection.artworks.find((artwork) => artwork.id === selectedId) ?? collection.artworks[0])
-      : null
+  const artworks = [
+    ...(collection.status === 'ready' ? collection.artworks : []),
+    ...custom.artworks,
+  ]
+  const selected = artworks.find((artwork) => artwork.id === selectedId) ?? artworks[0] ?? null
 
   return (
     <div className="app" data-quiet-motion={quietMotion}>
@@ -112,13 +116,37 @@ export default function App() {
             </button>
           </section>
         )}
-        {collection.status === 'ready' && selected && (
+        {custom.error && (
+          <div className="storage-notice">
+            <p role="alert">{custom.error}</p>
+            <button
+              className="text-button"
+              onClick={() => {
+                if (
+                  window.confirm(
+                    'Remove all custom pictures saved in this browser? Keep a copy of any SVGs you want to use again.',
+                  )
+                )
+                  custom.reset()
+              }}
+            >
+              Reset saved pictures
+            </button>
+          </div>
+        )}
+        {selected && (
           <div className="studio-layout">
             <DemoGallery
-              artworks={collection.artworks}
+              artworks={artworks}
               selectedId={selected.id}
               onSelect={(id) => {
                 setSelectedId(id)
+              }}
+              onAdd={() => setDialog('add-image')}
+              onRemove={(id) => {
+                const artwork = artworks.find((item) => item.id === id)
+                if (window.confirm(`Remove “${artwork?.title}” from this browser?`))
+                  custom.remove(id)
               }}
             />
             <PaperStage
@@ -161,7 +189,10 @@ export default function App() {
               <span>1</span>
               <div>
                 <h3>Pick a little idea</h3>
-                <p>Choose the cooler, gift box, or flower pot.</p>
+                <p>
+                  Choose the cooler, gift box, or flower pot. A grown-up can also use “Add image” to
+                  bring in an SVG of your own.
+                </p>
               </div>
             </li>
             <li>
@@ -217,6 +248,14 @@ export default function App() {
               guides and a separate instruction sheet.
             </p>
             <p>
+              Use “Add image” for manual mode: describe a scene, copy a ready-made prompt into
+              ChatGPT, and upload or paste the SVG it writes. Preview the folds, then save the
+              picture in this browser. You can also import an SVG you already have.
+            </p>
+            <button className="secondary-button" onClick={() => setDialog('add-image')}>
+              <Icon name="plus" /> Add image
+            </button>
+            <p>
               The paper geometry still needs a real-world fold check. The fold lab includes numbered
               sheets and directions to try at home.
             </p>
@@ -238,6 +277,16 @@ export default function App() {
         <Modal title="The little fold lab" onClose={() => setDialog(null)} wide>
           <FoldLab />
         </Modal>
+      )}
+      {dialog === 'add-image' && (
+        <AddImage
+          onClose={() => setDialog(null)}
+          onSave={(record) => {
+            custom.save(record)
+            setSelectedId(record.id)
+            setDialog(null)
+          }}
+        />
       )}
       {selected && (
         <PrintPreview

@@ -53,6 +53,7 @@ export function parseArtworkManifest(value: unknown): Artwork[] {
 }
 
 export function assetUrl(path: string) {
+  if (path.startsWith('data:image/svg+xml;charset=utf-8,')) return path
   return `${import.meta.env.BASE_URL}${path}`
 }
 

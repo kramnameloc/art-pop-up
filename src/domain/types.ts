@@ -44,11 +44,16 @@ export interface Artwork {
   palette: 'peach' | 'lavender' | 'sage'
   templateId: TemplateId
   templateVersion: 1
-  reviewStatus: 'approved-demo'
+  reviewStatus: 'approved-demo' | 'personal'
   master: { kind: 'svg'; src: string } & Pick<typeof LETTER_PAPER, 'width' | 'height'>
   thumbnail: string
   descriptions: Record<'closed' | 'open', string>
-  review: { visual: 'agent-reviewed'; human: 'pending'; physical: 'pending'; notes: string }
+  review: {
+    visual: 'agent-reviewed' | 'user-previewed'
+    human: 'pending' | 'reviewed'
+    physical: 'pending'
+    notes: string
+  }
   printBounds: { x: number; y: number; width: number; height: number }
 }
 import type { LETTER_PAPER } from './paper'

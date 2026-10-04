@@ -1,6 +1,6 @@
 # Art Pop Up implementation plan
 
-Build a child-friendly folding surprise art app in four independently reviewable phases. The first useful release lets a child choose original black-and-white artwork and unfold it on screen. Printing follows; live AI generation is an optional addition after the paper mechanism works.
+Build a child-friendly folding surprise art app in independently reviewable phases. The first useful release lets a child choose original black-and-white artwork and unfold it on screen. Printing and manual custom SVG imports follow; live AI generation is an optional addition after the paper mechanism works.
 
 Planning baseline: October 4, 2026. This repository initially contained only an untracked `.gitignore`. Phases 1–3 have software implementations in React, TypeScript, and Vite. Physical verification of the fold contract remains pending. See [Phase 1 evidence](PHASE_1_VERIFICATION.md), [Phase 2 evidence](PHASE_2_VERIFICATION.md), and [Phase 3 evidence](PHASE_3_VERIFICATION.md) for completed checks and limits.
 
@@ -36,9 +36,9 @@ Use React, TypeScript, and Vite for the initial client, with CSS for layout and 
 | `ArtworkRepository` | Load validated artwork metadata and assets |
 | `FoldTemplate` | Shared surface mapping and crease geometry |
 | `PrintLayout` | Compose artwork, guides, and print instructions |
-| `GenerationService` | Phase 4 server boundary for protected AI jobs |
+| `GenerationService` | Future server boundary for protected live AI jobs |
 
-Keep phase 1–3 content in versioned repository assets. Add a backend only for phase 4. Both static and generated assets must satisfy the same artwork contract. Choose hosting during implementation; no service purchase or deployment is assumed by this plan.
+Keep phase 1–3 content in versioned repository assets. Manual imports use local storage without a backend. Add a backend only for future live API generation. Both static and custom assets use the same paper dimensions and fold template. Choose hosting during implementation; no service purchase or deployment is assumed by this plan.
 
 ## Phase 1 — Web harness
 
@@ -92,7 +92,22 @@ Provide browser printing and Save as PDF first. Treat a dedicated one-click PDF 
 
 Exit condition: all three demos work as physical coloring crafts. Automated layout checks and PDF screenshots cannot close the physical fold checkpoint by themselves.
 
-## Phase 4 — Optional AI assistance
+## Phase 4 — Manual custom SVGs (no API key)
+
+Implemented October 4, 2026 at the user's request. **Add image → Describe → Copy prompt → Import & preview** lets a grown-up describe the closed scene and hidden surprise, copy template-aware instructions into ChatGPT, then upload the returned `.svg` or paste SVG XML. Existing SVGs can skip the prompt steps.
+
+The prompt is generated from the shared surprise template: 612 × 792 page, visible top y=0–198 and bottom y=594–792, hidden middle y=198–594, and actual creases y=198/396. It distinguishes the visibility boundary from a physical crease and requests matching seam anchors and simple coloring line art. Manual imports can use arbitrary valid viewBoxes, fitted without stretching, with a notice to inspect fold alignment.
+
+Before saving, the app displays folded and open previews of the same prepared master. Saved personal artwork is selected in the existing folding stage and can be printed on Letter or A4. Personal pictures have a separate review status from the approved demo manifest and never become repository demo assets automatically.
+
+- [x] **4A — Prompt flow:** Scene input, copyable instructions, clipboard fallback, and direct import shortcut.
+- [x] **4B — Import and preview:** File or pasted XML, fenced code support, dimension fitting, folded/open review, size/complexity limits, and static SVG allowlist validation before image rendering.
+- [x] **4C — Local collection:** Versioned local storage for SVGs and metadata, reload, selection, removal, cross-tab updates, and explicit handling of quota/unavailable/corrupt storage without silently replacing saved work.
+- [x] **4D — Shared outputs:** Custom masters use the existing animated fold, derived closed gallery view, and Letter/A4 print layout. No API credentials or provider requests.
+
+Manual review cannot guarantee that a model follows the prompt. Physical fold verification remains pending. See the [manual mode instructions](../README.md#manual-mode-in-the-app) and [verification evidence](MANUAL_ARTWORK_VERIFICATION.md).
+
+## Future phase — Optional live AI assistance
 
 Start with adult-assisted, template-constrained generation: choose a cooler, box, or pot and describe the surprise inside. Children continue to have a complete static experience. Arbitrary new folding shapes come later.
 
@@ -116,16 +131,16 @@ Use authenticated generation endpoints, per-account limits, a daily spend cap, o
 
 The proposed first release accepts no child photos, names, school details, or other identifying information. Before enabling AI for minors, verify current provider requirements and the intended audience/data flow. OpenAI's current under-18 guidance says not to process personal data from children under 13 or the applicable age of digital consent without first implementing zero data retention. An adult settings screen alone does not establish compliance. [Under-18 guidance](https://developers.openai.com/api/docs/guides/safety-checks/under-18-api-guidance)
 
-- [ ] **4A — Protected integration:** The key is server-only; adult access is enforced by the backend; limits, spend controls, and a disabled-AI fallback work.
-- [ ] **4B — Safe request handling:** Benign ideas succeed; inappropriate requests, identifying information, and instruction-bypass attempts do not reach the child's gallery. Run a documented evaluation set and verify fail-closed behavior when checks fail.
-- [ ] **4C — Artwork compatibility:** A representative batch of at least ten generated interiors passes adult review, folded/expanded comparisons, and Letter/A4 layout checks; physically fold representative outputs for each template.
-- [ ] **4D — Operational readiness:** Verify latency states, timeout handling, cancellation semantics, duplicate protection, deletion, and quota errors. Record model, prompt, and template versions, plus measured generation cost and review rejection rate.
+- [ ] **AI-A — Protected integration:** The key is server-only; adult access is enforced by the backend; limits, spend controls, and a disabled-AI fallback work.
+- [ ] **AI-B — Safe request handling:** Benign ideas succeed; inappropriate requests, identifying information, and instruction-bypass attempts do not reach the child's gallery. Run a documented evaluation set and verify fail-closed behavior when checks fail.
+- [ ] **AI-C — Artwork compatibility:** A representative batch of at least ten generated interiors passes adult review, folded/expanded comparisons, and Letter/A4 layout checks; physically fold representative outputs for each template.
+- [ ] **AI-D — Operational readiness:** Verify latency states, timeout handling, cancellation semantics, duplicate protection, deletion, and quota errors. Record model, prompt, and template versions, plus measured generation cost and review rejection rate.
 
 Exit condition: an adult can create, review, save, reopen, and print a suitable new surprise using the same paper system, and the application remains useful when AI is unavailable.
 
 ## Artwork contract and custom instructions
 
-Each artwork record should include `id`, `title`, `templateId`, `templateVersion`, master asset path, intrinsic dimensions or SVG viewBox, thumbnail, folded/expanded descriptions, print bounds, and review status. Keep provenance and generation details in creator metadata. Only approved records appear in the child-facing gallery.
+Each artwork record should include `id`, `title`, `templateId`, `templateVersion`, master asset path or prepared local SVG, intrinsic dimensions or SVG viewBox, thumbnail, folded/expanded descriptions, print bounds, and review status. Keep provenance and generation details in creator metadata. The built-in gallery uses approved demo records; personal imports appear separately under “Your pictures” after the user previews and saves them.
 
 The [artwork guide](ARTWORK_GUIDE.md) is the initial reusable custom instruction set. Prove it with one complete asset before packaging it into a dedicated local skill. A future skill can orchestrate reading a brief, creating drafts, composing art, exporting previews, and recording review, while retaining the same contract.
 
@@ -135,4 +150,4 @@ Use ImageGen when creating or editing bitmap drafts, the PDF skill when producin
 
 Keep checkpoint status and evidence in this plan as work proceeds: build/check output, screenshots of closed/intermediate/open states, exported PDFs, and a dated note or photo of physical fold results. Mark unavailable physical checks as pending. Do not treat a successful screenshot or generation request as completion of a whole phase.
 
-Phase 3’s print preview and browser exports are implemented with [review evidence](PHASE_3_VERIFICATION.md). Next, print and fold all three demos on Letter and A4, record the seam errors, and run the adult/child usability check using the evidence document’s worksheet. Obtain human artwork review and correct the template or instructions if needed. Close the Firefox, installed Safari, native print-dialog, and real touch-device verification gaps. Complete physical print validation before enabling Phase 4 live generation.
+Phase 3’s print preview and browser exports are implemented with [review evidence](PHASE_3_VERIFICATION.md), followed by Phase 4’s manual local SVG workflow. Next, print and fold all three demos and representative personal imports on Letter and A4, record the seam errors, and run the adult/child usability check using the evidence document’s worksheet. Obtain human artwork review and correct the template or instructions if needed. Close the Firefox, installed Safari, native print-dialog, and real touch-device verification gaps. Complete physical print validation before enabling future live API generation.

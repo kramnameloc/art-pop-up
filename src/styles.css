@@ -20,7 +20,8 @@ body {
   min-width: 320px;
 }
 button,
-input {
+input,
+textarea {
   font: inherit;
 }
 button,
@@ -47,6 +48,11 @@ a:focus-visible,
 input:focus-visible {
   outline: 3px solid #246e9e;
   outline-offset: 5px;
+}
+textarea:focus-visible,
+.manual-form h3:focus-visible {
+  outline: 3px solid #246e9e;
+  outline-offset: 4px;
 }
 button {
   transition:
@@ -1439,6 +1445,204 @@ h1 em {
   .fold-lab > .primary-button {
     width: 100%;
     font-size: 11px;
+  }
+}
+
+.add-image-button {
+  width: 100%;
+  margin-top: 16px;
+}
+.add-image-button > span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 10px;
+}
+.custom-gallery {
+  margin-top: 24px;
+}
+.custom-gallery h3 {
+  font-size: 14px;
+}
+.custom-gallery-items {
+  display: grid;
+  gap: 12px;
+}
+.custom-gallery-item {
+  min-width: 0;
+}
+.custom-gallery-item .card-copy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.remove-picture {
+  font-size: 11px;
+  min-height: 44px;
+}
+.import-steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  gap: 8px;
+  margin: 0 0 24px;
+}
+.import-steps li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 7px;
+  border-bottom: 2px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+}
+.import-steps li[aria-current='step'] {
+  color: var(--green);
+  border-color: var(--green);
+  font-weight: 700;
+}
+.import-steps li > span {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  background: #e3ead8;
+  border-radius: 50%;
+}
+.manual-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.manual-form label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.manual-form textarea,
+.manual-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 12px;
+  border: 1px solid #aebba4;
+  border-radius: 8px;
+  color: var(--ink);
+  background: #fffefa;
+  font-size: 14px;
+}
+.manual-form textarea {
+  resize: vertical;
+  line-height: 1.65;
+}
+.manual-form input::file-selector-button {
+  min-height: 44px;
+  margin-right: 10px;
+  border: 1px solid #aebfa0;
+  border-radius: 6px;
+  padding: 8px;
+  background: #edf1e5;
+  color: var(--ink);
+  cursor: pointer;
+}
+.manual-form .code-field {
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+.field-hint,
+.svg-requirements {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.svg-requirements summary {
+  min-height: 44px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+.manual-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+.manual-actions .text-button {
+  font-size: 12px;
+}
+.manual-form button:disabled {
+  opacity: 0.55;
+  transform: none;
+}
+.custom-preview {
+  border-top: 1px dashed #aebba4;
+  margin-top: 10px;
+  padding-top: 22px;
+}
+.custom-preview-papers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  margin: 18px 0;
+  padding: 24px 18px;
+  background: #eaf0e3;
+  border-radius: 12px;
+}
+.custom-preview-papers .paper-surface {
+  background: white;
+  box-shadow: 0 3px 12px #293d3518;
+}
+.custom-preview-papers figcaption {
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.import-error,
+.import-notice,
+.storage-notice {
+  background: #f5e4d9;
+  border: 1px solid #d7ac91;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #6e3528;
+  overflow-wrap: anywhere;
+}
+.storage-notice {
+  margin-bottom: 20px;
+}
+.import-notice {
+  margin-top: 12px;
+}
+@media (max-width: 800px) {
+  .custom-gallery-items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 540px) {
+  .import-steps {
+    gap: 5px;
+  }
+  .import-steps li {
+    flex-direction: column;
+    text-align: center;
+    font-size: 10px;
+    padding-inline: 0;
+  }
+  .custom-preview-papers {
+    gap: 14px;
+    padding: 16px 10px;
+  }
+  .manual-form input,
+  .manual-form textarea {
+    font-size: 16px;
+  }
+  .manual-actions {
+    align-items: stretch;
+    flex-direction: column;
   }
 }
 
